@@ -24,7 +24,7 @@ module.exports = {
 
         path: path.resolve(__dirname, 'dist'),
 
-        publicPath: 'static/'
+        publicPath: 'http://localhost:3000/js'
         // necessary for HMR to know where to load the hot update chunks
     },
 

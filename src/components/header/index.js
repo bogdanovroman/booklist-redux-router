@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import _ from 'lodash';
 
 class Header extends Component {
+    componentDidMount() {
+        
+    }
     render() {
+        const {isLogged, pic, name} = this.props.user;
+        let headerRightTemplate = !isLogged
+            ? <div className="">
+                    <img className="uk-border-circle" src={pic.small} width="40" height="40"/>
+                </div>
+            : <button type="button" className="uk-button uk-button-secondary uk-button-small">Войти</button>;
         return (
             <nav is class="uk-navbar-container" uk-navbar uk-sticky="show-on-up: true; animation: uk-animation-slide-top; bottom: #bottom">
                 <div className="uk-navbar-left">
@@ -14,7 +24,7 @@ class Header extends Component {
                     </ul>
                 </div>
                 <div className="uk-navbar-right uk-inverse uk-margin-small-right">
-                    <button type="button" className="uk-button uk-button-secondary">Войти</button>
+                    {headerRightTemplate}
                 </div>
             </nav>
         )
@@ -22,7 +32,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {user: state.user};
 };
 
 const mapDispatchToProps = (dispatch) => {
